@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {brackets} from "../../objects/brackets";
 import {Student} from "../../entities/student";
 import {NgForm} from "@angular/forms";
+
 @Component({
   selector: 'app-attributes-functions-first',
   templateUrl: './attributes-functions-first.component.html',
@@ -9,9 +10,8 @@ import {NgForm} from "@angular/forms";
 })
 class AttributesFunctionsFirstComponent {
 
-  private title : string = 'AttributesFunctionsFirstComponent class was working';
+  private readonly title : string = 'AttributesFunctionsFirstComponent class';
   protected readonly brackets = brackets;
-
   private students : Student[] = []
   private student : Student | undefined
 
@@ -20,19 +20,17 @@ class AttributesFunctionsFirstComponent {
   }
 
   public create(formStudent : NgForm) {
-    let nickname : string = formStudent.value.nickname.trim()
-    let age : number = formStudent.value.age
-    let year : number = formStudent.value.year
-    // console.log(formStudent.value.nickname.trim().length === 0)
-    // console.log(age === null)
+    // console.log(formStudent) // [object Object]
+    const value = formStudent.value;
+    let nickname : string = value.nickname.trim()
+    let age : number = value.age
+    let year : number = value.year
+
     if ((nickname.length === 0) || (age === null) || (year === null)) {
-
-      console.log("can't pass")
-
+      alert('Invalid values');
     }
     else if ((nickname.length !== 0) && (age !== null) && (year !== null)) {
-      console.log("pass")
-      this.student = new Student(formStudent.value.nickname,formStudent.value.age,formStudent.value.year)
+      this.student = new Student(value.nickname,value.age,value.year)
       // this.students.push(this.student) //*** push() add value on the bottom
       this.students.unshift(this.student) //*** unshift() add value on the top
     }
@@ -43,10 +41,8 @@ class AttributesFunctionsFirstComponent {
   }
 
   public delete() {
-    this.students.pop()
+    this.students.pop() // remove on the button
   }
-
-
 }
 
 export {

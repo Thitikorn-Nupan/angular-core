@@ -1,63 +1,80 @@
-<div class="container mt-2" style="margin: 0 auto;">
-    <span class="alert alert-dark p-2" style="font-weight: 1000">{{getTitle()}}</span>
-    <br>
-    <br>
-    <h3>{{getBrackets().curlyBracketR}}</h3>
-    <br>
+<div class="container" style="margin: 0 auto;">
 
-    <ul class="list-group">
-      <li class="list-group-item">{{getBrand()}}</li>
-      <li class="list-group-item">{{getModel()}}</li>
-      <li class="list-group-item">{{getSystem()}}</li>
-      <li class="list-group-item">{{getPrice()}}</li>
+  <app-menu></app-menu>
+
+  <span class="alert alert-dark p-2 mt-3" style="display:block;font-weight: 1000">Current File : {{ getTitle() }}</span>
+
+  <h3 class="mt-2 mb-2">{{ brackets.curlyBracketR }}</h3>
+  <!-- setter from Phone that i inherit -->
+  <form style="width: 145px" (ngSubmit)="setModelAsHTML(model)" class="form-control  p-2 mt-2">
+    <label class="form-label">Input Model (Enter)</label>
+    <input class="form-control" type="text" #model>
+    <!-- #mobel is a data named model if i need value of data i have to call model.value -->
+  </form>
+
+  <!-- getter from Phone that i inherit -->
+  <ul class="list-group mt-2" style="max-width: fit-content">
+    <li class="list-group-item p-2">{{ getBrand() }}</li>
+    <li class="list-group-item p-2">{{ getModel() }}</li>
+    <li class="list-group-item p-2">{{ getSystem() }}</li>
+    <li class="list-group-item p-2">{{ getPrice() }}</li>
+  </ul>
+  <h3 class="mt-2 mb-2">{{ brackets.curlyBracketL }}</h3>
+
+
+  <h3 class="mt-2 mb-2">{{ brackets.curlyBracketR }}</h3>
+  <!-- getter from Phone i inherit
+       it returns this type { p1:Phone, p2:Phone, stores : string[] }
+  -->
+  <ul class="list-group mt-2" style="max-width: fit-content">
+    <li class="list-group-item active p-2">Phone 1</li>
+    <li class="list-group-item p-2">{{ getObjectOfPhone().p1.getBrand() }}</li>
+    <li class="list-group-item p-2">{{ getObjectOfPhone().p1.getModel() }}</li>
+    <li class="list-group-item p-2">{{ getObjectOfPhone().p1.getSystem() }}</li>
+    <li class="list-group-item p-2">{{ getObjectOfPhone().p1.getPrice() }}</li>
+    <li class="list-group-item active p-2">Phone 2</li>
+    <li class="list-group-item p-2">{{ getObjectOfPhone().p2.getBrand() }}</li>
+    <li class="list-group-item p-2">{{ getObjectOfPhone().p2.getModel() }}</li>
+    <li class="list-group-item p-2">{{ getObjectOfPhone().p2.getSystem() }}</li>
+    <li class="list-group-item p-2">{{ getObjectOfPhone().p2.getPrice() }}</li>
+    <li class="list-group-item active p-2">Stores</li>
+    <!-- looping for stores (array type string) -->
+    <div *ngFor="let store of getObjectOfPhone().stores">
+      <li class="list-group-item  p-2">{{ store }}</li>
+    </div>
+  </ul>
+
+  <ul class="list-group mt-2" style="max-width: fit-content">
+    <li class="list-group-item active p-2">Actual Phone1,2,Stores</li>
+    <div *ngFor="let store of getObjectOfPhone() | keyvalue">
+      <li class="list-group-item p-2">{{ JSON.stringify(store.value) }}</li>
+    </div>
+  </ul>
+
+  <h3 class="mt-2 mb-2">{{ brackets.curlyBracketL }}</h3>
+
+
+  <h3 class="mt-2 mb-2">{{ brackets.curlyBracketR }}</h3>
+
+  <div *ngFor="let counties of serviceFunctions.getCountries() ; let counter = index ;">
+    <ul class="list-group mt-2" style="max-width: fit-content">
+      <li class="list-group-item p-2 active">{{ (counter + 1) }}. {{ counties.country }}</li>
+      <!-- looping for cities (array type string) -->
+      <div *ngFor="let cities of counties.city ;">
+        <li class="list-group-item  p-2">{{ cities }}</li>
+      </div>
     </ul>
+  </div>
 
-    <form (ngSubmit)="setModel(model.value)" class="form-control w-25 p-2 mt-2">
-      <label class="form-label">Change Model</label>
-      <input class="form-control" type="text" #model>
-    </form>
+  <h3 class="mt-2 mb-2">{{ brackets.curlyBracketL }}</h3>
 
-    <ul class="list-group mt-2">
+  <span class="alert alert-dark p-2 mt-3" style="display: block;font-weight: 1000">Current File : {{ getTitle() }}</span>
 
-      <li class="list-group-item">{{getObjectsPhone().p1.getBrand()}}</li>
-      <li class="list-group-item">{{getObjectsPhone().p1.getModel()}}</li>
-      <li class="list-group-item">{{getObjectsPhone().p1.getSystem()}}</li>
-      <li class="list-group-item">{{getObjectsPhone().p1.getPrice()}}</li>
-
-      <li class="list-group-item">{{getObjectsPhone().p2.getBrand()}}</li>
-      <li class="list-group-item">{{getObjectsPhone().p2.getModel()}}</li>
-      <li class="list-group-item">{{getObjectsPhone().p2.getSystem()}}</li>
-      <li class="list-group-item">{{getObjectsPhone().p2.getPrice()}}</li>
-
-      <div *ngFor="let store of getObjectsPhone().stores">
-         <li class="list-group-item">{{store}}</li>
-      </div>
-
-    </ul>
-
-    <br>
-
-      <div *ngFor="let store of getObjectsPhone() | keyvalue">
-        <ul class="list-group">
-          <li class="list-group-item">{{JSON.stringify(store.value)}}</li>
-        </ul>
-      </div>
-
-    <br>
-
-      <div *ngFor="let counties of serviceFunctions.getCountries() ; let counter = index ;">
-        <ul class="list-group w-25">
-          <li class="list-group-item">{{(counter+1)}}. {{counties.country}}</li>
-          <div *ngFor="let cities of counties.city ;">
-            <li class="list-group-item">{{cities}}</li>
-          </div>
-        </ul>
-      </div>
-
-    <br>
-    <h3>{{getBrackets().curlyBracketL}}</h3>
 </div>
 
-<div class="p-3">
-  <app-attributes-functions-first></app-attributes-functions-first>
-</div>
+
+<app-attributes-functions-first></app-attributes-functions-first>
+<app-understand-observable></app-understand-observable>
+
+
+

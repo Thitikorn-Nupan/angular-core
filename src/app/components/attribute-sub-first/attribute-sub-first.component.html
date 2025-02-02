@@ -1,82 +1,88 @@
 <div class="container mt-2" style="margin: 0 auto;">
-  <span class="alert alert-primary p-2" style="font-weight: 1000">{{getTitle()}}</span>
-  <br>
-  <br>
-  <h3>{{brackets.curlyBracketR}}</h3>
-  <br>
 
-   <form class="form-control p-2 w-25" (ngSubmit)="setOddOrEven(n.value)">
-      <label class="form-label">Check Odd or Even number</label>
-      <input class="form-control p-1" type="number" name="n" placeholder="0 - 100" #n>
-      <p>{{getOddOrEven()}}</p>
-   </form>
+  <span class="alert alert-success p-2" style="display: block;font-weight: 1000">Current File : {{ getTitle() }}</span>
+  <h3>{{ brackets.curlyBracketR }}</h3>
 
   <form class="form-control p-2 mt-2 w-25" (ngSubmit)="setTitle(newTitle.value)">
     <label class="form-label">Change the title</label>
-    <input class="form-control p-1" type="text" name="title" placeholder="new title..."  #newTitle >
+    <input class="form-control p-1" type="text" name="title" placeholder="Current File : " #newTitle>
   </form>
+  <h3>{{ brackets.curlyBracketL }}</h3>
+
+  <h3>{{ brackets.curlyBracketR }}</h3>
+  <form class="form-control p-2 w-25 mt-2" (ngSubmit)="setOddOrEven(n.value)">
+    <label class="form-label">Check Odd or Even number</label>
+    <input class="form-control p-1" type="number" name="n" placeholder="0 - 100" required #n>
+    <p>{{ getOddOrEven() }}</p>
+  </form>
+  <h3>{{ brackets.curlyBracketL }}</h3>
 
 
+  <h3>{{ brackets.curlyBracketR }}</h3>
   <div class="btn-group mt-2">
-     <button class="btn btn-success p-1" (click)="checkEvent($event)" >send 1</button>
-     <button class="btn btn-danger p-1" (click)="checkEvent(undefined)">send 2</button>
-     <button class="btn btn-warning p-1">send 3</button>
+    <button class="btn btn-success p-2" (click)="checkEvent($event)">send</button>
+    <button class="btn btn-danger p-2" (click)="checkEvent(undefined)">send</button>
   </div>
+  <h3>{{ brackets.curlyBracketL }}</h3>
+
+
+  <h3>{{ brackets.curlyBracketR }}</h3>
 
   <form class="form-control  p-2 mt-2 w-50">
-    <label class="form-label alert alert-success">My textTesting (read only) </label>
-    <input class="m-lg-2" type="text" readonly [value]="textTesting">
+    <label class="form-label alert alert-success p-2">My textTesting (read only) </label>
+    <input class="form-control-sm p-2 m-lg-2" type="text" readonly [value]="textTesting">
     <br>
-    <label class="form-label alert alert-primary">My textTesting (can edit) </label>
-    <input class="m-lg-2" type="text" [value]="textTesting"> <!-- [value] called getter -->
+    <label class="form-label alert alert-primary  p-2">My textTesting (can edit) </label>
+    <input class="form-control-sm p-2 m-lg-2" type="text" [value]="textTesting"> <!-- [value] called getter -->
     <br>
   </form>
 
   <div class="form-control p-2 mt-2 w-50">
-    <!-- Two way can work inside tag <form> -->
-    <label class="form-label alert alert-warning">Two way (can edit & update) <b>{{numberTesting}}</b></label> <!-- called getter-->
-    <input class=" m-lg-2" type="text" [(ngModel)]="numberTesting"> <!-- [(ngModel)] called setter -->
+    <!-- Two way can't work inside tag <form> -->
+    <label class="form-label alert alert-warning p-2">Two way <b>{{ numberTesting }}</b></label> <!-- called getter-->
+    <input class=" m-lg-2 p-2" type="text" [(ngModel)]="numberTesting"> <!-- [(ngModel)] called setter -->
   </div>
 
-
-
-  <form #formMultiple=ngForm (ngSubmit)="setTable(formMultiple)" class="form-control p-2 mt-2 w-25">
-    <label class="form-label alert alert-danger">Multiple table</label>
-    <input class="m-lg-2" type="number" name="table" ngModel #table> <!-- mark ngModel before #<name tag>-->
+  <form #formMultiple=ngForm (ngSubmit)="setTable(formMultiple)" class="form-control p-2 mt-2 w-50">
+    <label class="form-label alert alert-danger p-2">Multiple table</label>
+    <input class="form-control-sm p-2 m-lg-2" type="number" name="table" ngModel #table>
+    <!-- mark ngModel before #<name tag>-->
     <div class="btn-group">
-      <button (click)="setOpen()" class="btn btn-success p-1">send</button>
-      <button (click)="setCloseTable()" class="btn btn-danger p-1">close</button>
-      <button (click)="getRefresh()" class="btn btn-dark p-1" href="">reload</button> <!-- function for refresh page-->
+      <button (click)="setOpen()" class="btn btn-success p-2">send</button>
+      <button (click)="setCloseTable()" class="btn btn-danger p-2">close</button>
+      <button (click)="getRefresh()" class="btn btn-dark p-2" href="">reload</button> <!-- function for refresh page-->
     </div>
     <div *ngIf="open" class="text-center font-monospace">
       <ul>
         <li class="list-group" *ngFor="let i of MAX_NUMBER;  let index = index;">
-         {{(index+1)}} x {{getTable()}} = {{(index+1)*getTable()!}}
+          {{ (index + 1) }} x {{ getTable() }} = {{ (index + 1) * getTable()! }}
         </li>
       </ul>
     </div>
   </form>
+  <h3>{{ brackets.curlyBracketL }}</h3>
 
 
-
-  <ul class="list-group w-50 mt-2">
+  <h3>{{ brackets.curlyBracketR }}</h3>
+  <ul class="list-group mt-2" style="width: fit-content">
     <li class="list-group-item list-group-item-success p-2">
-      Pipes are referred as filters. It helps to transform data and manage data by  |
+      *** Pipes are referred as filters. It helps to transform data and manage data by | ***
     </li>
     <li class="list-group-item active p-2" aria-current="true">
-      short date :- <b>{{currentDate | date:'shortDate'  }} </b><br/>
-      Full date :- <b>{{currentDate | date:'fullDate' | uppercase}} </b><br/>
-      Formatted date:- <b>{{currentDate | date:'M/dd/yyyy'}} </b><br/>
-      Hours and minutes:- <b>{{currentDate | date:'h:mm'}}</b>
+      short date new Date() | date:'shortDate' :- <b>{{ currentDate | date:'shortDate' }} </b><br/>
+      Full date new Date() | date:'fullDate' | uppercase :- <b>{{ currentDate | date:'fullDate' | uppercase }} </b><br/>
+      Formatted date new Date() | date:'M/dd/yyyy' :- <b>{{ currentDate | date:'M/dd/yyyy' }} </b><br/>
+      Hours and minutes new Date() | date:'h:mm' :- <b>{{ currentDate | date:'h:mm' }}</b>
     </li>
   </ul>
 
+  <h3>{{ brackets.curlyBracketL }}</h3>
 
 
-
-  <!-- Understand how to feed data from json text -->
+  <h3>{{ brackets.curlyBracketR }}</h3>
+  <!-- ** Understand how to feed data from json text -->
   <!-- passed interface -->
-  <span class="alert alert-dark mt-2 p-2" style="display: inline-block">Passed by interface</span>
+  <span class="alert alert-dark mt-2 p-2" style="display: inline-block">Passed by interface as Array ** Comment[]</span>
   <table class="table table-dark w-50 mt-2">
     <thead>
     <tr>
@@ -85,14 +91,14 @@
       <th scope="col">Completed</th>
     </tr>
     </thead>
-   <!-- <tbody *ngFor="let comment of comments">
-      <tr *ngIf="comment.id <= 5">
-        <td>{{comment.id}}</td>
-        <td>{{comment.title}}</td>
-        <td>{{comment.completed}}</td>
-      </tr>
-    </tbody>-->
-    <tbody >
+    <tbody *ngFor="let comment of comments">
+    <tr *ngIf="comment.id <= 5">
+      <td>{{ comment.id }}</td>
+      <td>{{ comment.title }}</td>
+      <td>{{ comment.completed }}</td>
+    </tr>
+    </tbody>
+    <tbody>
     <tr>
       <td>1</td>
       <td>how are you today ?</td>
@@ -101,7 +107,6 @@
     </tbody>
   </table>
   <!-- passed class -->
-  <span class="alert alert-warning mt-2 p-2" style="display: inline-block">Passed by class</span>
   <table class="table table-warning w-50 mt-2">
     <thead>
     <tr>
@@ -110,14 +115,14 @@
       <th scope="col">Completed</th>
     </tr>
     </thead>
-    <!--<tbody *ngFor="let user of users">
+    <tbody *ngFor="let user of users">
     <tr *ngIf="user.id <= 5">
-      <td>{{user.id}}</td>
-      <td>{{user.title}}</td>
-      <td>{{user.completed}}</td>
+      <td>{{ user.id }}</td>
+      <td>{{ user.title }}</td>
+      <td>{{ user.completed }}</td>
     </tr>
-    </tbody>-->
-    <tbody >
+    </tbody>
+    <tbody>
     <tr>
       <td>1</td>
       <td>how are you today ?</td>
@@ -127,15 +132,13 @@
   </table>
 
 
-
-
-  <form  (ngSubmit)="getPostId(order.value)" class="form-control w-50 pt-2 mt-2">
+  <form (ngSubmit)="getPostId(order.value)" class="form-control w-50 pt-2 mt-2">
     <label class="form-label p-2">Order you want : </label>
-    <input class="form-control-sm" type="number" #order>
+    <input class="form-control-sm p-2" type="number" #order>
     <button class="btn btn-danger m-lg-2 p-2" type="submit">Get</button>
   </form>
 
-  <table *ngIf="post?.id !== null" class="table table-danger w-50 mt-2">
+  <table *ngIf="post?.id !== null" class="table table-warning w-50 mt-2">
     <thead>
     <tr>
       <th scope="col">Order</th>
@@ -144,21 +147,20 @@
     </tr>
     </thead>
     <tbody>
-    <tr >
-      <td>{{post.id}}</td>
-      <td>{{post.title}}</td>
-      <td>{{post.body}}</td>
+    <tr>
+      <td>{{ post.id }}</td>
+      <td>{{ post.title }}</td>
+      <td>{{ post.body }}</td>
     </tr>
     </tbody>
   </table>
 
 
+  <h3>{{ brackets.curlyBracketL }}</h3>
+
+
   <!-- Learn service ag -->
-  <div class="p-3">
-    <app-for-service-debug></app-for-service-debug>
-  </div>
+  <!--<app-for-service-debug></app-for-service-debug>-->
+  <span class="alert alert-success p-2" style="display: block;font-weight: 1000">Current File : {{ getTitle() }}</span>
 
-
-  <br>
-  <h3>{{brackets.curlyBracketL}}</h3>
 </div>

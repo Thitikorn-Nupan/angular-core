@@ -26,6 +26,10 @@ class Phone  {
     this._model = model
   }
 
+  setModelAsHTML(model : HTMLInputElement) {
+    this._model = model.value
+  }
+
   getPrice() : number | null {
     return this._price;
   }
@@ -38,7 +42,9 @@ class Phone  {
   setSystem(system : string | null) {
     this._system = system
   }
-  getObjectsPhone () : any {
+
+  // specify return type
+  getObjectOfPhone () : { p1:Phone, p2:Phone, stores : string[] }  {
     let p1 = new Phone()
     let p2 = new Phone()
     p1.setModel('Iphone 10 Pro Max')
@@ -46,14 +52,15 @@ class Phone  {
     p2.setModel('Iphone 7 Plus')
     p2.setPrice(7900)
     return {
-      p1 : p1 ,
+      p1 : p1 , // ex when use => getObjectOfPhone().p1.getPrice()
       p2 : p2 ,
-      stores : [ /* can use ngFor used to loop */
+      stores : [ // can use ngFor used to loop
         'Central Rama II',
         'Central Rama III',
         'The mall']
     }
   }
+
 }
 
 export {

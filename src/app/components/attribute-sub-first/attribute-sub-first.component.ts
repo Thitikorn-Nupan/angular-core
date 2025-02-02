@@ -26,7 +26,7 @@ export class AttributeSubFirstComponent extends ServiceFunctions implements OnIn
 
   protected readonly brackets = brackets;
   private _currentDate = new Date()
-  private _title : string = 'AttributeSubFirstComponent class was working';
+  private _title : string = 'AttributeSubFirstComponent class';
 
   // it means Array type Entity
   private _comments :Comment[] | any
@@ -36,13 +36,13 @@ export class AttributeSubFirstComponent extends ServiceFunctions implements OnIn
   private serviceHttp : ServiceHttp // have to for dependency injection
 
   ngOnInit() {
-    // this.loadComment()
+    this.loadComment()
   }
   loadComment () {
-     /*this.serviceHttp.getTodos().subscribe((data : Object) => {
+     this.serviceHttp.getTodos().subscribe((data : Object) => {
        this._comments = data
        this._users = data
-     })*/
+     })
   }
 
   getPostId (value: any) {
@@ -69,11 +69,11 @@ export class AttributeSubFirstComponent extends ServiceFunctions implements OnIn
   }
 
 
-  get comments(): any {
+  get comments() : Comment[] {
     // console.log(this._comments[0])
     return this._comments;
   }
-  get users(): any {
+  get users():User[] {
     // console.log(this._users[0])
     return this._users;
   }

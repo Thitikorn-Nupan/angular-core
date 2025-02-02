@@ -1,7 +1,8 @@
 import {NgForm} from "@angular/forms";
 class ServiceFunctions {
   public readonly MAX_NUMBER = new Array(12) // for use to be size of loop , it works
-  private readonly countries : any  = [
+  // countries is arrays type object
+  private readonly countries : {country:string,city:string[]} []  = [
     { // element 1
       // key    : values
       'country' : 'TH' ,
@@ -17,7 +18,8 @@ class ServiceFunctions {
   private _numberTesting : number | string = 10.10
   private _table : number | any =  0
   private _open : boolean = false
-  public getCountries() : any {
+  // ** you can specify type as any public getCountries() : any
+  public getCountries() : {country:string,city:string[]} [] {
      return this.countries
   }
 
@@ -26,10 +28,8 @@ class ServiceFunctions {
   }
 
   public setOddOrEven(n: number | any) : void {
-
-    console.log(n.length ) // if didn't put a value type number will return 0
-    console.log(n % 2 === 0 ) // true
-
+    // console.log(n.length ) // if didn't put a value type number will return 0
+    // console.log(n % 2 === 0 ) // true
     if (n.length === 0 ) {
       this.oddOrEven = null
     }
@@ -39,14 +39,13 @@ class ServiceFunctions {
     else if (n % 2 !== 0) {
       this.oddOrEven =  n + ' is odd number'
     }
-
   }
 
   public checkEvent(event : any | undefined) {
     // event type true and false
     // when undefined will be false
     console.log("button was clicked")
-    if(event) console.log(event.target); // <button _ngcontent-ng-c1233715784="" class="btn btn-dark p-1 mt-1">send 2</button> */
+    if(event) console.log(event.target); // <button _ngcontent-ng-c1233715784="" class="btn btn-dark p-1 mt-1">send 2</button>
   }
 
 

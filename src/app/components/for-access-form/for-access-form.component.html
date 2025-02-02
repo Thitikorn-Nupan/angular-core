@@ -1,0 +1,32 @@
+<form class="form-control w-25 p-2" #formRobot="ngForm" (ngSubmit)="onClickSubmit(formRobot.value)">
+  <h5 class="alert alert-success text-center p-2">Robot Form</h5>
+  <label class="form-label">Robot Id</label>
+  <input class="form-control" type="number" name="rid" ngModel>
+  <label class="form-label">Code name</label>
+  <input class="form-control" type="text" name="codeName" ngModel>
+  <label class="form-label">Price</label>
+  <input class="form-control" type="number" name="price" ngModel>
+  <!-- ## Note : name="<attribute name>" must be same #<attribute name> -->
+  <button class="btn btn-success p-1 mt-2">send</button>
+</form>
+
+<!-- Form Driven-->
+
+
+
+
+
+<form class="form-control w-25 p-2 mt-3" >
+  <h5 class="alert alert-success text-center p-2">Robot Form</h5>
+  <label class="form-label">Robot Id</label>
+  <input class="form-control" type="number" name="rid" [(ngModel)]="robot3.rid">
+  <label class="form-label">Code name</label>
+  <input class="form-control" type="text" name="codeName" [(ngModel)]="robot3.codeName">
+  <label class="form-label">Price</label>
+  <input class="form-control" type="number" name="price" [(ngModel)]="robot3.price">
+  <!-- ## Note : name="<attribute name>" must be same #<attribute name> -->
+  <button class="btn btn-success p-1 mt-2">send</button>
+  <div class="alert alert-danger mt-2">
+    Rid : {{robot3.rid}} , Robot : {{robot3 | json}}
+  </div>
+</form>

@@ -1,30 +1,31 @@
-import { Component } from '@angular/core';
+// All imports you can access on html file
+// Ex, <h3 class="mt-2 mb-2">{{ brackets.curlyBracketR }}</h3>
+// but you have to put in on attribute in class
+import {Component} from '@angular/core';
 import {brackets} from "./objects/brackets";
 import {Phone} from "./entities/phone";
 import {ServiceFunctions} from "./services/service-functions";
+
 @Component({
   selector: 'app-root', //* set name for getting component
   templateUrl: './app.component.html', //* set template html file
   styleUrls: ['./app.component.css'] //* set style css file
 })
-class AppComponent extends Phone {
+export class AppComponent extends Phone { // *** Now all methods/attributes on Phone can access on app.component.html
 
-  private title : string = 'AppComponent class was working';
   protected readonly JSON = JSON;
+  private readonly title: string = 'AppComponent class';
+  protected readonly brackets = brackets;
+
+  // ** protect modifier can access on html
   protected readonly serviceFunctions = new ServiceFunctions(); // created object class
 
-
-  public getTitle() : string {
+  public getTitle(): string {
     return this.title;
   }
 
-  public getBrackets() : any {
-    return brackets;
-  }
-
 }
 
-export {
-  AppComponent
-
-}
+// export {
+//   AppComponent
+// }
