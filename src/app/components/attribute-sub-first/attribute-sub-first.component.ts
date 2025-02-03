@@ -11,17 +11,19 @@ import {User} from "../../entities/user";
   selector: 'app-attribute-sub-first',
   templateUrl: './attribute-sub-first.component.html',
   styleUrls: ['./attribute-sub-first.component.css'] ,
+  /*
+    Here, ServiceDebug will be available only inside the AttributeSubFirstComponent and its view.
+    ** To make ServiceDebug in other component, simply use providers decorator in necessary component.
+    ** viewProviders is similar to provider except it does not allow the service to be used inside the component content created using ng-content directive.
+  */
   providers : [
     ServiceDebug,
     ServiceHttp
-  ] // *** Ts files can work in this case. the once is ServiceDebug class and second ForServiceDebugComponent class , ServiceHttp class
+  ]
+  // *** Ts files can work in this case. the once is ServiceDebug class and second ForServiceDebugComponent class , ServiceHttp class
   // viewProviders : [ServiceDebug]
 })
-/*
-  Here, ServiceDebug will be available only inside the AttributeSubFirstComponent and its view.
-  ** To make ServiceDebug in other component, simply use providers decorator in necessary component.
-  ** viewProviders is similar to provider except it does not allow the service to be used inside the component content created using ng-content directive.
-*/
+
 export class AttributeSubFirstComponent extends ServiceFunctions implements OnInit {
 
   protected readonly brackets = brackets;
@@ -35,9 +37,17 @@ export class AttributeSubFirstComponent extends ServiceFunctions implements OnIn
 
   private serviceHttp : ServiceHttp // have to for dependency injection
 
+  // the concept it's like @Autowrite in spring boot
+  constructor(serviceHttp : ServiceHttp) {
+    super();
+    this.serviceHttp = serviceHttp
+  }
+
+
   ngOnInit() {
     this.loadComment()
   }
+
   loadComment () {
      this.serviceHttp.getTodos().subscribe((data : Object) => {
        this._comments = data
@@ -51,11 +61,6 @@ export class AttributeSubFirstComponent extends ServiceFunctions implements OnIn
       })
   }
 
-  // the concept it's like @Autowrite in spring boot
-  constructor(serviceHttp : ServiceHttp) {
-    super();
-    this.serviceHttp = serviceHttp
-  }
 
   public getTitle() : string {
     return this._title;

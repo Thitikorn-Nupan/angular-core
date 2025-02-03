@@ -1,29 +1,35 @@
 import {Component, OnInit} from '@angular/core';
 import {Robot} from "../../entities/robot";
+import {brackets} from "../../objects/brackets";
+import {NgForm} from "@angular/forms";
 @Component({
   selector: 'app-for-access-form',
   templateUrl: './for-access-form.component.html',
   styleUrls: ['./for-access-form.component.css']
 })
-export class ForAccessFormComponent implements OnInit {
+export class ForAccessFormComponent{
+
+  private robot2 : RobotModifierAsPrivate
+  protected readonly brackets = brackets;
+  private readonly _title : string = 'ForAccessFormComponent class';
 
   private robot : Robot | any = {
       rid : null,
       codeName : null ,
       price : null
   }
-
-  private robot2 : Robot2
-
-
-  protected robot3 : Robot2 = new Robot2()
+  protected robot3 : RobotModifierAsPrivate
 
   constructor() {
-    this.robot2 = new Robot2(); // create object before use any method in there
+    this.robot2 = new RobotModifierAsPrivate(); // create object before use any method in there
+    this.robot3  = new RobotModifierAsPrivate();
   }
 
-  ngOnInit() {
+  get title(): string {
+    return this._title;
   }
+
+
   setAttributeRobot(rid:number , codeName:string ,price:number) {
 
     this.robot.rid = rid
@@ -33,17 +39,26 @@ export class ForAccessFormComponent implements OnInit {
     this.robot2.rid = rid
     this.robot2.codeName = codeName
     this.robot2.price = price
-  }
-  onClickSubmit(data : any) {
-    this.setAttributeRobot(data.rid,data.codeName,data.price)
-
-    console.log(this.robot) // just public {rid: 14, codeName: 'xr-14', price: 1000000}
-    console.log(this.robot2) // private Robot2 {_rid: 14, _codeName: 'xr-14', _price: 1000000}
 
   }
+
+  onClickSubmit(data:NgForm) {
+    const value = data.value
+    this.setAttributeRobot(value.rid,value.codeName,value.price)
+    console.log(this.robot) // *** just public {rid: 14, codeName: 'xr-14', price: 1000000}
+    console.log(this.robot2) // *** private Robot2 {_rid: 14, _codeName: 'xr-14', _price: 1000000}
+  }
+
+  onClickSubmitFormDriven() {
+
+    console.log(this.robot3)
+  }
+
+
 }
 
-class Robot2 {
+// another classes can be on the same ts file
+class RobotModifierAsPrivate {
   private _rid! : number
   private _codeName! : string
   private _price! : number
@@ -71,4 +86,5 @@ class Robot2 {
   set price(value: number) {
     this._price = value;
   }
+
 }

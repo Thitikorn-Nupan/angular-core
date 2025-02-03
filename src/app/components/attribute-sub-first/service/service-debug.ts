@@ -28,9 +28,10 @@ class ServiceDebug {
   constructor() {
     console.log('ServiceDebug constructor\'s is working')
   }
-  /*get testServiceDebug() : string {
+
+  get testServiceDebug() : string {
     return 'I am inside ServiceDebug class'
-  }*/
+  }
   info(message : String) : void {
     console.log(message);
   }

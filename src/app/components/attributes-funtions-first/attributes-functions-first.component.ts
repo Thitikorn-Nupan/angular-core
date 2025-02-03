@@ -11,6 +11,7 @@ import {NgForm} from "@angular/forms";
 class AttributesFunctionsFirstComponent {
 
   private readonly title : string = 'AttributesFunctionsFirstComponent class';
+
   protected readonly brackets = brackets;
   private students : Student[] = []
   private student : Student | undefined

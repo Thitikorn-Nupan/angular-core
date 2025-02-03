@@ -1,4 +1,5 @@
 class Student {
+
   private nickname : string
   private age : number
   private year : number
