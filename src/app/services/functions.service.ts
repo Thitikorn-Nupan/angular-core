@@ -1,5 +1,5 @@
 import {NgForm} from "@angular/forms";
-class ServiceFunctions {
+class FunctionsService {
   public readonly MAX_NUMBER = new Array(12) // for use to be size of loop , it works
   // countries is arrays type object
   private readonly countries : {country:string,city:string[]} []  = [
@@ -95,5 +95,5 @@ class ServiceFunctions {
 }
 
 export {
-  ServiceFunctions
+  FunctionsService
 }

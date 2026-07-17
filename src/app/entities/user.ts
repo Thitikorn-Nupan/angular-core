@@ -1,8 +1,8 @@
 class User {
-  private _userId : number
-  private _id : number
-  private _title : string
-  private _completed : boolean
+  private _userId: number
+  private _id: number
+  private _title: string
+  private _completed: boolean
 
   constructor(userId: number, id: number, title: string, completed: boolean) {
     this._userId = userId;
@@ -48,17 +48,3 @@ export {
   User
 }
 
-/*
-    {
-        "userId": 1,W
-        "id": 14,
-        "title": "repellendus sunt dolores architecto voluptatum",
-        "completed": true
-    },
-    {
-        "userId": 1,
-        "id": 15,
-        "title": "ab voluptatum amet voluptas",
-        "completed": true
-    }
-*/

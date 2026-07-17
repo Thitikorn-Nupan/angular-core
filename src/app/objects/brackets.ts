@@ -1,23 +1,19 @@
 class Brackets {
+  private static readonly curlyBracketRight: string = '{'
+  private static readonly curlyBracketLeft: string = '}'
 
-  private readonly curlyBracketRight : string = '{'
-  private readonly curlyBracketLeft : string = '}'
-
-  getBracketRight() : string {
-     return this.curlyBracketRight
-  }
-  getBracketLeft() : string {
-    return this.curlyBracketLeft
+  static getBracketRight(): string {
+    return Brackets.curlyBracketRight
   }
 
-
+  static getBracketLeft(): string {
+    return Brackets.curlyBracketLeft
+  }
 }
 
-const BracketsClass = new Brackets()
-
 const brackets = {
-    curlyBracketR : BracketsClass.getBracketRight(),
-    curlyBracketL : BracketsClass.getBracketLeft()
+  curlyBracketR: Brackets.getBracketRight(),
+  curlyBracketL: Brackets.getBracketLeft()
 }
 
 export {

@@ -4,7 +4,7 @@
 import {Component} from '@angular/core';
 import {brackets} from "./objects/brackets";
 import {Phone} from "./entities/phone";
-import {ServiceFunctions} from "./services/service-functions";
+import {FunctionsService} from "./services/functions.service";
 
 @Component({
   selector: 'app-root', //* set name for getting component
@@ -18,14 +18,10 @@ export class AppComponent extends Phone { // *** Now all methods/attributes on P
   protected readonly brackets = brackets;
 
   // ** protect modifier can access on html
-  protected readonly serviceFunctions = new ServiceFunctions(); // created object class
+  protected readonly serviceFunctions = new FunctionsService(); // created object class
 
   public getTitle(): string {
     return this.title;
   }
 
 }
-
-// export {
-//   AppComponent
-// }

@@ -4,7 +4,6 @@ interface Comment { // for take a value from json text
   title : string ,
   completed : boolean
 }
-
 export {
   Comment
 }

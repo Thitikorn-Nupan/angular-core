@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {brackets} from "../../objects/brackets";
-import {ServiceFunctions} from "../../services/service-functions";
+import {FunctionsService} from "../../services/functions.service";
 import {ServiceDebug} from "./service/service-debug"; // ServiceDebug is normal class but has @Injector
 import {ServiceHttp} from "./service/service-http"; // same
 // import {ForServiceHttpService} from "../for-service-http.service";
@@ -24,7 +24,7 @@ import {User} from "../../entities/user";
   // viewProviders : [ServiceDebug]
 })
 
-export class AttributeSubFirstComponent extends ServiceFunctions implements OnInit {
+export class AttributeSubFirstComponent extends FunctionsService implements OnInit {
 
   protected readonly brackets = brackets;
   private _currentDate = new Date()
